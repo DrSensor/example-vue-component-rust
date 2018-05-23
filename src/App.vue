@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <Calculator :a="3" :b="5">+</Calculator>
+    <Calculator :a="3" :b="4">+</Calculator>
+    <Calculator :a="2" :b="3">+</Calculator>
+    <Calculator :a="-1" :b="0.9999">+</Calculator>
   </div>
 </template>
 
