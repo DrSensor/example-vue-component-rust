@@ -3,13 +3,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import loadWasm from '@/libs/calculator.rs'
 
 @Component
 export default class Led extends Vue {
   @Prop() a!: number
   @Prop() b!: number
+  @Prop() operation!: string
+
+  @Watch('operation')
+  changeOperation(op: string) {
+    loadWasm().then(result => {
+      this.calculate = result.instance.exports[op]
+    })
+  }
 
   beforeCreate() {
     loadWasm().then(result => {
