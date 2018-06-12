@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "node --max_old_space_size=5120 node_modules/@vue/cli-service/bin/vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,6 +16,8 @@
     "@vue/cli-plugin-babel": "^3.0.0-beta.11",
     "@vue/cli-plugin-typescript": "^3.0.0-beta.11",
     "@vue/cli-service": "^3.0.0-beta.11",
+    "assemblyscript-live-loader": "^0.3.0",
+    "binaryen-loader": "^0.1.0",
     "lint-staged": "^6.0.0",
     "rust-native-wasm-loader": "^0.8.1",
     "vue-template-compiler": "^2.5.16",
