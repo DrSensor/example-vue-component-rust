@@ -3,15 +3,21 @@
     <div class="vertical">
       <input type="range" name="y" v-model.number="y" />
     </div>
+    <select class="title" v-model="operation">
+        <option value="arithmatic">arithmatic</option>
+        <option value="algebra">algebra (matrix 2x2 diagonal operation)</option>
+    </select>
     <input type="range" name="x" v-model.number="x" />
-    <Calculator class="center" :a="x" :b="y" :operation="selected">
+    <Calculator class="center" :a="x" :b="y" :operation="selected" :module="operation">
       <select v-model="selected">
         <option value="add">add</option>
         <option value="substract">substract</option>
         <option value="multiply">multiply</option>
-        <option value="divide">divide</option>
-        <option value="power">power</option>
-        <option value="remainder">remainder</option>
+        <option v-if="operation === 'algebra'" value="dot">dot</option>
+        <option v-if="operation === 'algebra'" value="tensor">tensor</option>
+        <option v-if="operation === 'arithmatic'" value="divide">divide</option>
+        <option v-if="operation === 'arithmatic'" value="power">power</option>
+        <option v-if="operation === 'arithmatic'" value="remainder">remainder</option>
       </select>
     </Calculator>
   </div>
@@ -26,13 +32,18 @@ export default class App extends Vue {
   x = 0
   y = 0
   selected = 'add'
+  operation = 'arithmatic'
 }
 </script>
 
 <style scoped>
 .center {
-  margin-top: -15%;
-  margin-left: 15%;
+  margin-top: -75px;
+  margin-left: 75px;
+}
+.title {
+  margin-top: -40px;
+  position: absolute;
 }
 .vertical {
   display: inline-block;
